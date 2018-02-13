@@ -5,7 +5,7 @@ import {
     forwardRef,
     OnDestroy,
     AfterViewInit,
-    ViewEncapsulation
+    ViewEncapsulation, ElementRef
 } from '@angular/core';
 
 import Jodit from "jodit";
@@ -20,15 +20,30 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
 
 @Component({
     selector: 'jodit-editor',
-    template: `<textarea id="{{elementId}}" (change)="onChange($event)" (blur)="onBlur()"></textarea>`,
+    template: `<ng-template></ng-template>`,
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['../node_modules/jodit/build/jodit.min.css'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 
 export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
-    @Input() elementId: String;
+    private elementRef: ElementRef;
+
+    @Input() config: object | undefined = {};
+    @Input() tagName: string = 'textarea';
+    @Input() id: string | undefined;
+
+    element: HTMLElement;
     editor;
+
+    createElement() {
+        const tagName = typeof this.tagName === 'string' ? this.tagName : 'textarea';
+        this.element = document.createElement(tagName);
+        if (this.element) {
+            this.element.id = this.id;
+            this.elementRef.nativeElement.appendChild(this.element);
+        }
+    }
 
     private onTouchedCallback: () => {};
     private onChangeCallback: (_: any) => {};
@@ -48,7 +63,10 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
     }
 
     ngAfterViewInit() {
-        this.editor = new Jodit('#' + this.elementId, {});
+        if (!this.element) {
+            this.createElement();
+        }
+        this.editor = new Jodit(this.element, this.config);
     }
 
     ngOnDestroy() {
