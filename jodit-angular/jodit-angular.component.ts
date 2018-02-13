@@ -41,7 +41,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
     ngZone: NgZone;
 
     element: HTMLElement;
-    editor;
+    editor: Jodit;
 
     constructor(elementRef: ElementRef, ngZone: NgZone) {
         super();
@@ -104,7 +104,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
         validEvents.forEach((eventName) => {
             const eventEmitter: EventEmitter<any> = this[eventName];
             if (eventEmitter.observers.length > 0) {
-                this.editor.on(eventName.substring(2), this.ngZone.run(() => (value: any, ...args) => eventEmitter.emit({ value, args, editor: this.editor})));
+                this.editor.events.on(eventName.substring(2), this.ngZone.run(() => (value: any, ...args) => eventEmitter.emit({ value, args, editor: this.editor})));
             }
         });
     }
