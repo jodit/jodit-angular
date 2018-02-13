@@ -49,7 +49,7 @@ In config you can set all [Jodit's options](https://xdsoft.net/jodit/play.html)
 You can also bind editor events via a shorthand prop on the editor, for example:
 
 ```html
-<jodit-editor (onChange)="handleEvent($eventObj)"></jodit-editor>
+<jodit-editor (onChange)="handleEvent($event)"></jodit-editor>
 ```
 
 Where the handler gets called with an object containing the properties event, which is the event object, and editor, which is a reference to the editor.
