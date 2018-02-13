@@ -7,13 +7,14 @@ import {
     AfterViewInit,
     ViewEncapsulation,
     ElementRef,
+    EventEmitter,
     NgZone
 } from '@angular/core';
 
 import Jodit from "jodit";
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {Events} from "./Events";
+import {Events, validEvents} from "./Events";
 
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
     provide: NG_VALUE_ACCESSOR,
@@ -57,8 +58,6 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
         }
     }
 
-
-
     private onChangeCallback: (_: any) => {};
     private onTouchedCallback: () => {};
 
@@ -100,6 +99,14 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
                     this.ngZone.run(() => this.onTouchedCallback());
                 }
             });
+
+
+        validEvents.forEach((eventName) => {
+            const eventEmitter: EventEmitter<any> = this[eventName];
+            if (eventEmitter.observers.length > 0) {
+                this.editor.on(eventName.substring(2), this.ngZone.run(() => (value: any, ...args) => eventEmitter.emit({ value, args, editor: this.editor})));
+            }
+        });
     }
 
     ngOnDestroy() {
