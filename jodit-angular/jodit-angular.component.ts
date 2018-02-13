@@ -5,12 +5,15 @@ import {
     forwardRef,
     OnDestroy,
     AfterViewInit,
-    ViewEncapsulation, ElementRef, NgZone
+    ViewEncapsulation,
+    ElementRef,
+    NgZone
 } from '@angular/core';
 
 import Jodit from "jodit";
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {Events} from "./Events";
 
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
     provide: NG_VALUE_ACCESSOR,
@@ -25,13 +28,14 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
     styleUrls: ['../node_modules/jodit/build/jodit.min.css'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
-
-export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
+export class JoditAngularComponent extends Events implements AfterViewInit, OnDestroy, ControlValueAccessor {
     private elementRef: ElementRef;
 
     @Input() config: object | undefined = {};
     @Input() tagName: string = 'textarea';
     @Input() id: string | undefined;
+    @Input() defaultValue: string | undefined;
+
 
     ngZone: NgZone;
 
@@ -39,6 +43,7 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
     editor;
 
     constructor(elementRef: ElementRef, ngZone: NgZone) {
+        super();
         this.elementRef = elementRef;
         this.ngZone = ngZone;
     }
@@ -51,6 +56,8 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
             this.elementRef.nativeElement.appendChild(this.element);
         }
     }
+
+
 
     private onChangeCallback: (_: any) => {};
     private onTouchedCallback: () => {};
@@ -66,6 +73,8 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
     set value(v: string) {
         if (this.editor) {
             this.editor.setEditorValue(v || '');
+        } else {
+            this.defaultValue = v;
         }
     }
 
@@ -75,9 +84,22 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
         }
 
         this.editor = new Jodit(this.element, this.config);
+
+        if (this.defaultValue) {
+            this.editor.value = this.defaultValue;
+        }
+
         this.editor.events
-            .on('change', this.onChange)
-            .on('blur', this.onTouched);
+            .on('change', (value: string) => {
+                if (typeof this.onChangeCallback === 'function') {
+                    this.ngZone.run(() => this.onChangeCallback(value));
+                }
+            })
+            .on('blur', () => {
+                if (typeof this.onTouchedCallback === 'function') {
+                    this.ngZone.run(() => this.onTouchedCallback());
+                }
+            });
     }
 
     ngOnDestroy() {
@@ -85,19 +107,6 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
             this.editor.destruct();
         }
     }
-
-
-    onChange = (value: string) => {
-        if (typeof this.onChangeCallback === 'function') {
-            this.ngZone.run(() => this.onChangeCallback(value));
-        }
-    };
-
-    onTouched = () => {
-        if (typeof this.onTouchedCallback === 'function') {
-            this.ngZone.run(() => this.onTouchedCallback());
-        }
-    };
 
     writeValue(v: any): void {
         this.value = v;
