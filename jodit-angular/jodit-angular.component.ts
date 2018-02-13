@@ -5,7 +5,7 @@ import {
     forwardRef,
     OnDestroy,
     AfterViewInit,
-    ViewEncapsulation, ElementRef
+    ViewEncapsulation, ElementRef, NgZone
 } from '@angular/core';
 
 import Jodit from "jodit";
@@ -33,11 +33,14 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
     @Input() tagName: string = 'textarea';
     @Input() id: string | undefined;
 
+    ngZone: NgZone;
+
     element: HTMLElement;
     editor;
 
-    constructor(elementRef: ElementRef) {
+    constructor(elementRef: ElementRef, ngZone: NgZone) {
         this.elementRef = elementRef;
+        this.ngZone = ngZone;
     }
 
     createElement() {
@@ -49,8 +52,8 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
         }
     }
 
-    private onTouchedCallback: () => {};
     private onChangeCallback: (_: any) => {};
+    private onTouchedCallback: () => {};
 
     get value(): string {
         if (this.editor) {
@@ -70,7 +73,11 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
         if (!this.element) {
             this.createElement();
         }
+
         this.editor = new Jodit(this.element, this.config);
+        this.editor.events
+            .on('change', this.onChange)
+            .on('blur', this.onTouched);
     }
 
     ngOnDestroy() {
@@ -79,17 +86,18 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
         }
     }
 
-    onBlur() {
-        if (typeof this.onTouchedCallback === 'function') {
-            this.onTouchedCallback();
-        }
-    }
 
-    onChange(event: any) {
+    onChange = (value: string) => {
         if (typeof this.onChangeCallback === 'function') {
-            this.onChangeCallback(event.target.value);
+            this.ngZone.run(() => this.onChangeCallback(value));
         }
-    }
+    };
+
+    onTouched = () => {
+        if (typeof this.onTouchedCallback === 'function') {
+            this.ngZone.run(() => this.onTouchedCallback());
+        }
+    };
 
     writeValue(v: any): void {
         this.value = v;
@@ -98,8 +106,11 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
     registerOnChange(fn: any): void {
         this.onChangeCallback = fn;
     }
-
-    registerOnTouched(fn: any): void {
+    registerOnTouched(fn: () => {}): void {
         this.onTouchedCallback = fn;
+    }
+
+    setDisabledState(isDisabled: boolean): void {
+        this.editor.setReadOnly(isDisabled);
     }
 }
