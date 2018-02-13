@@ -18,7 +18,7 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
 @Component({
     selector: 'jodit-editor',
     template: `<textarea id="{{elementId}}" (change)="onChange($event)" (blur)="onBlur()"></textarea>`,
-    styleUrls: ['./jodit-angular.component.css'],
+    styleUrls: ['../node_modules/jodit/build/jodit.min.css'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 
