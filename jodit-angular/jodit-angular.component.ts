@@ -36,6 +36,10 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
     element: HTMLElement;
     editor;
 
+    constructor(elementRef: ElementRef) {
+        this.elementRef = elementRef;
+    }
+
     createElement() {
         const tagName = typeof this.tagName === 'string' ? this.tagName : 'textarea';
         this.element = document.createElement(tagName);
