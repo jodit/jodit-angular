@@ -21,8 +21,8 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
 @Component({
     selector: 'jodit-editor',
     template: `<textarea id="{{elementId}}" (change)="onChange($event)" (blur)="onBlur()"></textarea>`,
-    // encapsulation: ViewEncapsulation.None,
-    styleUrls: ['./jodit-angular.component.css'],
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: ['../node_modules/jodit/build/jodit.min.css'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 
@@ -58,11 +58,15 @@ export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlV
     }
 
     onBlur() {
-        this.onTouchedCallback();
+        if (typeof this.onTouchedCallback === 'function') {
+            this.onTouchedCallback();
+        }
     }
 
     onChange(event: any) {
-        this.onChangeCallback(event.target.value);
+        if (typeof this.onChangeCallback === 'function') {
+            this.onChangeCallback(event.target.value);
+        }
     }
 
     writeValue(v: any): void {
