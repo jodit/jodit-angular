@@ -12,4 +12,5 @@ import { JoditAngularComponent } from './jodit-angular.component';
       JoditAngularComponent
   ]
 })
+
 export class JoditAngularModule { }

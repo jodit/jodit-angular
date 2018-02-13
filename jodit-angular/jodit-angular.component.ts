@@ -1,15 +1,75 @@
-import { Component, OnInit } from '@angular/core';
+import {
+    Component,
+    Input,
+    Provider,
+    forwardRef, OnDestroy, AfterViewInit
+} from '@angular/core';
+
+import Jodit from "jodit";
+
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => JoditAngularComponent),
+    multi: true
+};
 
 @Component({
-  selector: 'jodit-editor',
-  templateUrl: './jodit-angular.component.html',
-  styleUrls: ['./jodit-angular.component.css']
+    selector: 'jodit-editor',
+    template: `<textarea id="{{elementId}}" (change)="onChange($event)" (blur)="onBlur()"></textarea>`,
+    styleUrls: ['./jodit-angular.component.css'],
+    providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
-export class JoditAngularComponent implements OnInit {
 
-  constructor() { }
+export class JoditAngularComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
+    @Input() elementId: String;
+    editor;
 
-  ngOnInit() {
-  }
+    private onTouchedCallback: () => {};
+    private onChangeCallback: (_: any) => {};
 
+    get value(): string {
+        if (this.editor) {
+            return this.editor.getEditorValue();
+        } else {
+            return '';
+        }
+    }
+
+    set value(v: string) {
+        if (this.editor) {
+            this.editor.setEditorValue(v || '');
+        }
+    }
+
+    ngAfterViewInit() {
+        this.editor = new Jodit('#' + this.elementId, {});
+    }
+
+    ngOnDestroy() {
+        if (this.editor) {
+            this.editor.destruct();
+        }
+    }
+
+    onBlur() {
+        this.onTouchedCallback();
+    }
+
+    onChange(event: any) {
+        this.onChangeCallback(event.target.value);
+    }
+
+    writeValue(v: any): void {
+        this.value = v;
+    }
+
+    registerOnChange(fn: any): void {
+        this.onChangeCallback = fn;
+    }
+
+    registerOnTouched(fn: any): void {
+        this.onTouchedCallback = fn;
+    }
 }
