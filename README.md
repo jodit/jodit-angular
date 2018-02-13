@@ -53,3 +53,7 @@ You can also bind editor events via a shorthand prop on the editor, for example:
 ```
 
 Where the handler gets called with an object containing the properties event, which is the event object, and editor, which is a reference to the editor.
+
+License
+-----
+This package is available under `MIT` License.
