@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 
 import * as JoditEditor from "jodit/build/jodit.min.js";
-import "jodit/build/jodit.min.css";
+import "style-loader!jodit/build/jodit.min.css";
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {Events, validEvents} from "./Events";
