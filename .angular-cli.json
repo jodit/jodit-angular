@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/jodit/build/jodit.min.css"
+        "styles.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
