@@ -11,7 +11,7 @@ import {
     NgZone
 } from '@angular/core';
 
-import Jodit from "jodit";
+import * as JoditEditor from "jodit/build/jodit.min.js";
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {Events, validEvents} from "./Events";
@@ -41,7 +41,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
     ngZone: NgZone;
 
     element: HTMLElement;
-    editor: Jodit;
+    editor: JoditEditor.Jodit;
 
     constructor(elementRef: ElementRef, ngZone: NgZone) {
         super();
@@ -82,7 +82,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
             this.createElement();
         }
 
-        this.editor = new Jodit(this.element, this.config);
+        this.editor = new JoditEditor(this.element, this.config);
 
         if (this.defaultValue) {
             this.editor.value = this.defaultValue;
