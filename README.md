@@ -42,8 +42,27 @@ Use the editor in your templates like this:
 
 ```html
 <jodit-editor [config]="{buttons: 'bold'}"></jodit-editor>
-```
+```               
+
 In config you can set all [Jodit's options](https://xdsoft.net/jodit/play.html)
+
+**Note about toolbar buttons override:**
+
+Jodit editor apply a different toolbar buttons layout based on width available for the editor itself.
+So a different width size for editor will show a different buttons layout.
+The "buttons" config setting in the example above will override only the default toolbar buttons for large widths.
+If you want to override buttons displayed on all editor sizes use something like this:
+
+```
+<jodit-editor
+  [config]="{
+      buttons: 'bold,strikethrough,underline,italic'
+      buttonsMD: 'bold,strikethrough,underline,italic'
+      buttonsSM: 'bold,strikethrough,underline,italic'
+      buttonsXS: 'bold,strikethrough,underline,italic'
+      };"
+></jodit-editor>     
+```      
 
 ## Event binding
 You can also bind editor events via a shorthand prop on the editor, for example:
