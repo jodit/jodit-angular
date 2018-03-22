@@ -52,8 +52,26 @@ You can also bind editor events via a shorthand prop on the editor, for example:
 <jodit-editor (onChange)="handleEvent($event)"></jodit-editor>
 ```
 
+### Events list
+
+* onChange
+* onKeydown
+* onMousedown
+* onClick
+* onFocus
+* onPaste
+* onResize
+* onBeforeEnter
+* onBeforeCommand
+* onAfterCommand
+* onAfterExec
+* onAfterPaste
+* onChangeSelection
+
 Where the handler gets called with an object containing the properties event, which is the event object, and editor, which is a reference to the editor.
 
+
+\
 License
 -----
 This package is available under `MIT` License.
