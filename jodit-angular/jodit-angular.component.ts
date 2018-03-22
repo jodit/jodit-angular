@@ -105,7 +105,9 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
         validEvents.forEach((eventName) => {
             const eventEmitter: EventEmitter<any> = this[eventName];
             if (eventEmitter.observers.length > 0) {
-                this.editor.events.on(eventName.substring(2).toLowerCase(), this.ngZone.run(() => (value: any, ...args) => eventEmitter.emit({ value, args, editor: this.editor})));
+                let eventNameInJodit = eventName.substring(2);
+                eventNameInJodit = eventNameInJodit.substr(0, 1).toLowerCase() + eventNameInJodit.substring(1);
+                this.editor.events.on(eventNameInJodit, this.ngZone.run(() => (...args) => eventEmitter.emit({args, editor: this.editor})));
             }
         });
     }
