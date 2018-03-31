@@ -13,6 +13,7 @@ export class Events {
     @Output() onMousedown: EventEmitter<EventObj> = new EventEmitter(false);
     @Output() onClick: EventEmitter<EventObj> = new EventEmitter(false);
     @Output() onFocus: EventEmitter<EventObj> = new EventEmitter();
+    @Output() onBlur: EventEmitter<EventObj> = new EventEmitter();
     @Output() onPaste: EventEmitter<EventObj> = new EventEmitter(false);
     @Output() onResize: EventEmitter<EventObj> = new EventEmitter();
     @Output() onBeforeCommand: EventEmitter<EventObj> = new EventEmitter(false);
@@ -30,6 +31,7 @@ export const validEvents: (keyof Events)[] = [
     'onMousedown',
     'onClick',
     'onFocus',
+    'onBlur',
     'onPaste',
     'onResize',
     'onBeforeCommand',
