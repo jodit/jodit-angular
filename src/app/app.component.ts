@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  handleEvent() {
+  handleEvent($event: any) {
     return false;
   }
 }

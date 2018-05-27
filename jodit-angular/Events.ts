@@ -1,9 +1,8 @@
 import { Output, EventEmitter } from '@angular/core';
-import Jodit from "jodit";
 
 export interface EventObj {
     args: any[];
-    editor: Jodit;
+    editor: any;
 }
 
 export class Events {

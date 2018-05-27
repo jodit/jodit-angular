@@ -11,8 +11,10 @@ import {
     NgZone
 } from '@angular/core';
 
-import * as JoditEditor from "jodit/build/jodit.min.js";
-// import "style-loader!jodit/build/jodit.min.css";
+
+declare const require: any;
+const Jodit: any = require("jodit");
+
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {Events, validEvents} from "./Events";
@@ -42,7 +44,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
     ngZone: NgZone;
 
     element: HTMLElement;
-    editor: JoditEditor.Jodit;
+    editor: any;
 
     constructor(elementRef: ElementRef, ngZone: NgZone) {
         super();
@@ -83,7 +85,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
             this.createElement();
         }
 
-        this.editor = new JoditEditor(this.element, this.config);
+        this.editor = new Jodit(this.element, this.config);
 
         if (this.defaultValue) {
             this.editor.value = this.defaultValue;
@@ -107,7 +109,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
             if (eventEmitter.observers.length > 0) {
                 let eventNameInJodit = eventName.substring(2);
                 eventNameInJodit = eventNameInJodit.substr(0, 1).toLowerCase() + eventNameInJodit.substring(1);
-                this.editor.events.on(eventNameInJodit, this.ngZone.run(() => (...args) => eventEmitter.emit({args, editor: this.editor})));
+                this.editor.events.on(eventNameInJodit, this.ngZone.run(() => (...args: any[]) => eventEmitter.emit({args, editor: this.editor})));
             }
         });
     }
