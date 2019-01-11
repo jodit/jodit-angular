@@ -1,6 +1,6 @@
 {
   "name": "jodit-angular",
-  "version": "1.0.79",
+  "version": "1.0.80",
   "description": "Angular Jodit Component",
   "main": "index.js",
   "scripts": {
