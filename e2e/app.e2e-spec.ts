@@ -7,8 +7,11 @@ describe('jodit-angular App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display Jodit html editor', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+
+    // Must be exists Jodit container & workplace class styles
+    expect(page.getJoditContainer()).toBeTruthy();
+    expect(page.getJoditWorkplace()).toBeTruthy();
   });
 });
