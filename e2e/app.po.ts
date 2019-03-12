@@ -5,7 +5,11 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getJoditContainer() {
+    return element(by.css('.jodit_container'));
+  }
+
+  getJoditWorkplace() {
+    return element(by.css('.jodit_workplace'));
   }
 }
