@@ -1,3 +1,5 @@
+> Hey. Due to the fact that I do not use Angular in my projects, I cannot fix plugin errors in a timely manner. If you want the plugin to develop, send PR or better become a contributor
+
 # Jodit Angular Component
 
 This package is a wrapper around [Jodit](https://xdsoft.net/jodit/) to make it easier to use in a Angular application.
