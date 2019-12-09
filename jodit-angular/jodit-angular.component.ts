@@ -13,7 +13,7 @@ import {
 
 
 declare const require: any;
-const Jodit: any = require("jodit");
+const EditorModule: any = require("jodit");
 
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -33,20 +33,19 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class JoditAngularComponent extends Events implements AfterViewInit, OnDestroy, ControlValueAccessor {
-    private elementRef: ElementRef;
 
     @Input() config: object | undefined = {};
     @Input() tagName: string = 'textarea';
     @Input() id: string | undefined;
     @Input() defaultValue: string | undefined;
 
-
-    ngZone: NgZone;
-
     element: HTMLElement;
     editor: any;
 
-    constructor(elementRef: ElementRef, ngZone: NgZone) {
+    private onChangeCallback: (_: any) => {};
+    private onTouchedCallback: () => {};
+
+    constructor(private elementRef: ElementRef, private ngZone: NgZone) {
         super();
         this.elementRef = elementRef;
         this.ngZone = ngZone;
@@ -61,8 +60,6 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
         }
     }
 
-    private onChangeCallback: (_: any) => {};
-    private onTouchedCallback: () => {};
 
     get value(): string {
         if (this.editor) {
@@ -83,9 +80,12 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
     ngAfterViewInit() {
         if (!this.element) {
             this.createElement();
-        }
 
-        this.editor = new Jodit(this.element, this.config);
+            // Create instance outside Angular scope
+            this.ngZone.runOutsideAngular(() => {
+                this.editor = new EditorModule.Jodit(this.element, this.config);
+            });
+        }
 
         if (this.defaultValue) {
             this.editor.value = this.defaultValue;
