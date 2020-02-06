@@ -13,11 +13,11 @@ import {
 
 
 declare const require: any;
-const EditorModule: any = require("jodit");
+const EditorModule: any = require('jodit');
 
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {Events, validEvents} from "./Events";
+import {Events, validEvents} from './Events';
 
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
     provide: NG_VALUE_ACCESSOR,
@@ -29,13 +29,13 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
     selector: 'jodit-editor',
     template: `<ng-template></ng-template>`,
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['../node_modules/jodit/build/jodit.min.css'],
+    styleUrls: ['../../../../node_modules/jodit/build/jodit.min.css'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class JoditAngularComponent extends Events implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
     @Input() config: object | undefined = {};
-    @Input() tagName: string = 'textarea';
+    @Input() tagName = 'textarea';
     @Input() id: string | undefined;
     @Input() defaultValue: string | undefined;
 
@@ -109,6 +109,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
             if (eventEmitter.observers.length > 0) {
                 let eventNameInJodit = eventName.substring(2);
                 eventNameInJodit = eventNameInJodit.substr(0, 1).toLowerCase() + eventNameInJodit.substring(1);
+                // tslint:disable-next-line:max-line-length
                 this.editor.events.on(eventNameInJodit, this.ngZone.run(() => (...args: any[]) => eventEmitter.emit({args, editor: this.editor})));
             }
         });

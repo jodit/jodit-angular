@@ -1,0 +1,19 @@
+{
+  "name": "jodit-angular",
+  "version": "1.0.89",
+  "peerDependencies": {
+    "@angular/common": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
+    "@angular/core": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
+    "@angular/animations": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
+    "@angular/compiler": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
+    "@angular/forms": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
+    "@angular/platform-browser": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
+    "@angular/platform-browser-dynamic": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
+    "@angular/router": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
+    "core-js": "^2.6.5",
+    "jodit": "^3.2.38",
+    "rxjs": "^6.3.3",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.9.1"
+  }
+}
