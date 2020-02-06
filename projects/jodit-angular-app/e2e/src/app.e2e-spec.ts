@@ -1,23 +1,17 @@
 import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
+describe('jodit-angular App', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display Jodit html editor', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('jodit-angular-app app is running!');
-  });
 
-  afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+    // Must be exists Jodit container & workplace class styles
+    expect(page.getJoditContainer()).toBeTruthy();
+    expect(page.getJoditWorkplace()).toBeTruthy();
   });
 });

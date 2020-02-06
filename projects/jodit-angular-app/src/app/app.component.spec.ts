@@ -1,5 +1,5 @@
 import { TestBed, async } from '@angular/core/testing';
-import { JoditAngularModule } from '../../jodit-angular/public_api';
+import { JoditAngularModule } from 'jodit-angular';
 
 import { AppComponent } from './app.component';
 
