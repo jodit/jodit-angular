@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { JoditAngularModule } from "../../jodit-angular/jodit-angular.module";
-
+import { JoditAngularModule } from 'jodit-angular';
 
 @NgModule({
   declarations: [

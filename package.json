@@ -10,9 +10,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p ng-package.json",
-    "public": "npm publish dist",
-    "newversion": "rm -rf dist/ && npm version patch --no-git-tag-version && npm run packagr &&  npm run github && npm run public",
+    "package": "ng build jodit-angular-lib",
+    "public": "npm publish dist/jodit-angular-lib",
+    "newversion": "rm -rf dist/ && npm version patch --no-git-tag-version && npm run package &&  npm run github && npm run public",
     "github": "git add --all  && git commit -m \"New version $npm_package_version. Read more https://github.com/xdan/jodit/releases/tag/$npm_package_version \" && git tag $npm_package_version && git push --tags origin HEAD:master"
   },
   "repository": {
@@ -54,10 +54,12 @@
     "core-js": "^2.6.5",
     "jodit": "^3.2.38",
     "rxjs": "^6.3.3",
+    "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.24",
+    "@angular-devkit/build-ng-packagr": "~0.803.24",
     "@angular/cli": "8.3.24",
     "@angular/compiler-cli": "^8.2.14",
     "@angular/language-service": "^8.2.14",

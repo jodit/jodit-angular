@@ -3,31 +3,72 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "jodit-angular": {
-      "root": "",
-      "sourceRoot": "src",
+    "jodit-angular-lib": {
+      "projectType": "library",
+      "root": "projects/jodit-angular-lib",
+      "sourceRoot": "projects/jodit-angular-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/jodit-angular-lib/tsconfig.lib.json",
+            "project": "projects/jodit-angular-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/jodit-angular-lib/src/test.ts",
+            "tsConfig": "projects/jodit-angular-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/jodit-angular-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/jodit-angular-lib/tsconfig.lib.json",
+              "projects/jodit-angular-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "jodit-angular-app": {
       "projectType": "application",
-      "prefix": "app",
       "schematics": {},
+      "root": "projects/jodit-angular-app",
+      "sourceRoot": "projects/jodit-angular-app/src",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/jodit-angular",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "assets": [],
-            "styles": [],
+            "outputPath": "dist/jodit-angular-app",
+            "index": "projects/jodit-angular-app/src/index.html",
+            "main": "projects/jodit-angular-app/src/main.ts",
+            "polyfills": "projects/jodit-angular-app/src/polyfills.ts",
+            "tsConfig": "projects/jodit-angular-app/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/jodit-angular-app/src/favicon.ico",
+              "projects/jodit-angular-app/src/assets"
+            ],
+            "styles": [
+              "projects/jodit-angular-app/src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/jodit-angular-app/src/environments/environment.ts",
+                  "with": "projects/jodit-angular-app/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -38,80 +79,83 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "jodit-angular:build"
+            "browserTarget": "jodit-angular-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "jodit-angular:build:production"
+              "browserTarget": "jodit-angular-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "jodit-angular:build"
+            "browserTarget": "jodit-angular-app:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "styles": [],
-            "scripts": [],
-            "assets": []
+            "main": "projects/jodit-angular-app/src/test.ts",
+            "polyfills": "projects/jodit-angular-app/src/polyfills.ts",
+            "tsConfig": "projects/jodit-angular-app/tsconfig.spec.json",
+            "karmaConfig": "projects/jodit-angular-app/karma.conf.js",
+            "assets": [
+              "projects/jodit-angular-app/src/favicon.ico",
+              "projects/jodit-angular-app/src/assets"
+            ],
+            "styles": [
+              "projects/jodit-angular-app/src/styles.css"
+            ],
+            "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "projects/jodit-angular-app/tsconfig.app.json",
+              "projects/jodit-angular-app/tsconfig.spec.json",
+              "projects/jodit-angular-app/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        }
-      }
-    },
-    "jodit-angular-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "architect": {
+        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "protractor.conf.js",
-            "devServerTarget": "jodit-angular:serve"
+            "protractorConfig": "projects/jodit-angular-app/e2e/protractor.conf.js",
+            "devServerTarget": "jodit-angular-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "jodit-angular:serve:production"
+              "devServerTarget": "jodit-angular-app:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
     }
   },
-  "defaultProject": "jodit-angular"
+  "defaultProject": "jodit-angular-app"
 }
