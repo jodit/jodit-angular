@@ -1,6 +1,6 @@
 {
   "name": "jodit-angular",
-  "version": "1.0.94",
+  "version": "1.0.96",
   "description": "Angular Jodit Component",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "e2e": "ng e2e",
     "package": "ng build jodit-angular-lib",
     "public": "npm publish dist/jodit-angular-lib",
-    "newversion": "rm -rf dist/ && npm version patch --no-git-tag-version && npm run package &&  npm run github && npm run public",
+    "newversion": "rm -rf dist/ && cd ./projects/jodit-angular-lib && npm version patch --no-git-tag-version && cd ../../ && npm version patch --no-git-tag-version && npm run package && npm run github && npm run public",
     "github": "git add --all  && git commit -m \"New version $npm_package_version. Read more https://github.com/xdan/jodit/releases/tag/$npm_package_version \" && git tag $npm_package_version && git push --tags origin HEAD:master"
   },
   "repository": {
