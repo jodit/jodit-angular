@@ -1,23 +1,22 @@
 import {
-    Component,
-    Input,
-    Provider,
-    forwardRef,
-    OnDestroy,
     AfterViewInit,
-    ViewEncapsulation,
+    Component,
     ElementRef,
     EventEmitter,
-    NgZone
+    forwardRef,
+    Input,
+    NgZone,
+    OnDestroy,
+    Provider,
+    ViewEncapsulation
 } from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {Events, validEvents} from './Events';
 
 
 declare const require: any;
 const EditorModule: any = require('jodit');
 
-
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {Events, validEvents} from './Events';
 
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
     provide: NG_VALUE_ACCESSOR,
@@ -27,14 +26,28 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
 
 @Component({
     selector: 'jodit-editor',
-    template: `<ng-template></ng-template>`,
+    template: `
+        <ng-template></ng-template>`,
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['../../../../node_modules/jodit/build/jodit.min.css'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class JoditAngularComponent extends Events implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
-    @Input() config: object | undefined = {};
+    @Input()
+    set config(v: object | undefined) {
+        this._config = v;
+        if (this.element) {
+            this.resetEditor();
+        }
+    }
+
+    get config() {
+        return this._config;
+    }
+
+    private _config = {};
+
     @Input() tagName = 'textarea';
     @Input() id: string | undefined;
     @Input() defaultValue: string | undefined;
@@ -77,15 +90,23 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
         }
     }
 
+    resetEditor() {
+        this.editor.destruct();
+        this.createEditor();
+    }
+
     ngAfterViewInit() {
         if (!this.element) {
             this.createElement();
-
-            // Create instance outside Angular scope
-            this.ngZone.runOutsideAngular(() => {
-                this.editor = new EditorModule.Jodit(this.element, this.config);
-            });
+            this.createEditor();
         }
+    }
+
+    createEditor() {
+        // Create instance outside Angular scope
+        this.ngZone.runOutsideAngular(() => {
+            this.editor = new EditorModule.Jodit(this.element, this.config);
+        });
 
         if (this.defaultValue) {
             this.editor.value = this.defaultValue;
@@ -110,7 +131,10 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
                 let eventNameInJodit = eventName.substring(2);
                 eventNameInJodit = eventNameInJodit.substr(0, 1).toLowerCase() + eventNameInJodit.substring(1);
                 // tslint:disable-next-line:max-line-length
-                this.editor.events.on(eventNameInJodit, this.ngZone.run(() => (...args: any[]) => eventEmitter.emit({args, editor: this.editor})));
+                this.editor.events.on(eventNameInJodit, this.ngZone.run(() => (...args: any[]) => eventEmitter.emit({
+                    args,
+                    editor: this.editor
+                })));
             }
         });
     }
@@ -128,6 +152,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
     registerOnChange(fn: any): void {
         this.onChangeCallback = fn;
     }
+
     registerOnTouched(fn: () => {}): void {
         this.onTouchedCallback = fn;
     }
