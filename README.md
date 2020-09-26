@@ -2,6 +2,11 @@
 
 # Jodit Angular Component
 
+[![npm](https://img.shields.io/npm/v/jodit-angular.svg)](https://www.npmjs.com/package/jodit-angular)
+[![npm](https://img.shields.io/npm/dm/jodit-angular.svg)](https://www.npmjs.com/package/jodit-angular)
+[![npm](https://img.shields.io/npm/l/jodit-angular.svg)](https://www.npmjs.com/package/jodit-angular)
+
+
 This package is a wrapper around [Jodit](https://xdsoft.net/jodit/) to make it easier to use in a Angular application.
 
 ## for contributors
