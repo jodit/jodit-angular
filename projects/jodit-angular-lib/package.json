@@ -2,6 +2,9 @@
   "name": "jodit-angular",
   "license": "MIT",
   "version": "1.0.119",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.0-0",
     "@angular/core": "^9.0.0-0",
@@ -14,7 +17,6 @@
     "core-js": "^2.6.5",
     "jodit": "^3.2.38",
     "rxjs": "^6.3.3",
-    "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   }
 }

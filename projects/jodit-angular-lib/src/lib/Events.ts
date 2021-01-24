@@ -1,10 +1,11 @@
-import {Output, EventEmitter} from '@angular/core';
+import { Output, EventEmitter, Directive } from '@angular/core';
 
 export interface EventObj {
   args: any[];
   editor: any;
 }
 
+@Directive()
 export class Events {
   // tslint:disable:no-output-on-prefix
   @Output() onChange: EventEmitter<EventObj> = new EventEmitter();

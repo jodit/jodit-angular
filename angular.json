@@ -14,6 +14,11 @@
           "options": {
             "tsConfig": "projects/jodit-angular-lib/tsconfig.lib.json",
             "project": "projects/jodit-angular-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/jodit-angular-lib/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -53,7 +58,7 @@
             "main": "projects/jodit-angular-app/src/main.ts",
             "polyfills": "projects/jodit-angular-app/src/polyfills.ts",
             "tsConfig": "projects/jodit-angular-app/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/jodit-angular-app/src/favicon.ico",
               "projects/jodit-angular-app/src/assets"
@@ -76,7 +81,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
