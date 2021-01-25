@@ -1,6 +1,6 @@
 {
   "name": "jodit-angular",
-  "version": "1.0.118",
+  "version": "1.0.119",
   "description": "Angular Jodit Component",
   "main": "index.js",
   "scripts": {
@@ -52,15 +52,15 @@
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
     "core-js": "^2.6.5",
-    "jodit": "^3.2.38",
-    "rxjs": "^6.3.3",
+    "jodit": "^3.5.4",
+    "rxjs": "^6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.24",
-    "@angular-devkit/build-ng-packagr": "~0.803.24",
-    "@angular/cli": "8.3.24",
+    "@angular-devkit/build-angular": "~0.803.29",
+    "@angular-devkit/build-ng-packagr": "~0.803.29",
+    "@angular/cli": "8.3.29",
     "@angular/compiler-cli": "^8.2.14",
     "@angular/language-service": "^8.2.14",
     "@types/jasmine": "^2.8.9",

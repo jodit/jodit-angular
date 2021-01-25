@@ -2,15 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { JoditAngularModule } from 'jodit-angular';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-      BrowserModule,
-      JoditAngularModule
-  ],
+    imports: [
+        BrowserModule,
+        JoditAngularModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
