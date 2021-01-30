@@ -1,24 +1,108 @@
-# JoditAngularLib
+> Hey. Due to the fact that I do not use Angular in my projects, I cannot fix plugin errors in a timely manner. If you want the plugin to develop, send PR or better become a contributor
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.14.
+# Jodit Angular Component
 
-## Code scaffolding
+[![npm](https://img.shields.io/npm/v/jodit-angular.svg)](https://www.npmjs.com/package/jodit-angular)
+[![npm](https://img.shields.io/npm/dm/jodit-angular.svg)](https://www.npmjs.com/package/jodit-angular)
+[![npm](https://img.shields.io/npm/l/jodit-angular.svg)](https://www.npmjs.com/package/jodit-angular)
 
-Run `ng generate component component-name --project jodit-angular-lib` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project jodit-angular-lib`.
-> Note: Don't forget to add `--project jodit-angular-lib` or else it will be added to the default project in your `angular.json` file. 
 
-## Build
+This package is a wrapper around [Jodit](https://xdsoft.net/jodit/) to make it easier to use in a Angular application.
 
-Run `ng build jodit-angular-lib` to build the project. The build artifacts will be stored in the `dist/` directory.
+## for contributors
+The editor component itselt is located in the `jodit-angular` folder and packaged into a redistributable package with the [ng-packagr](https://www.npmjs.com/package/ng-packagr) tool. A test app has been created with the @angular/cli. It is located in the src directory and a dev server can be started by using the `npm start` command.
 
-## Publishing
+## Installation
+```bash
+$ npm install jodit-angular
+```
 
-After building your library with `ng build jodit-angular-lib`, go to the dist folder `cd dist/jodit-angular-lib` and run `npm publish`.
+## Usage
 
-## Running unit tests
+### Loading the component
 
-Run `ng test jodit-angular-lib` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Import the EditorModule from the npm package like this:
 
-## Further help
+```typescript
+import { JoditAngularModule } from 'jodit-angular';
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+And add it to you application module:
+```typescript
+// This might look different depending on how you have set up your app
+// but the important part is the imports array
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    JoditAngularModule // <- Important part
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+```
+
+Using the component in your templates
+Use the editor in your templates like this:
+
+```html
+<jodit-editor [config]="{buttons: 'bold'}"></jodit-editor>
+```               
+
+In config you can set all [Jodit's options](https://xdsoft.net/jodit/play.html)
+
+**Note about toolbar buttons override:**
+
+Jodit editor apply a different toolbar buttons layout based on width available for the editor itself.
+So a different width size for editor will show a different buttons layout.
+The "buttons" config setting in the example above will override only the default toolbar buttons for large widths.
+If you want to override buttons displayed on all editor sizes use something like this:
+
+```
+<jodit-editor
+  [config]="{
+      buttons: 'bold,strikethrough,underline,italic'
+      buttonsMD: 'bold,strikethrough,underline,italic'
+      buttonsSM: 'bold,strikethrough,underline,italic'
+      buttonsXS: 'bold,strikethrough,underline,italic'
+      };"
+></jodit-editor>     
+```      
+
+## Event binding
+You can also bind editor events via a shorthand prop on the editor, for example:
+
+```html
+<jodit-editor (onChange)="handleEvent($event)"></jodit-editor>
+```
+
+### Events list
+
+* onChange
+* onKeydown
+* onMousedown
+* onClick
+* onFocus
+* onPaste
+* onResize
+* onBeforeEnter
+* onBeforeCommand
+* onAfterCommand
+* onAfterExec
+* onAfterPaste
+* onChangeSelection
+
+Where the handler gets called with an object containing the properties event, which is the event object, and editor, which is a reference to the editor.
+
+## Versions
+
+* Angular <= 8 use v1.0.*
+* Angular 9 use v1.9.*
+* Angular 10 use v1.10.*
+* Angular 11 use v1.11.*
+
+License
+-----
+This package is available under `MIT` License.

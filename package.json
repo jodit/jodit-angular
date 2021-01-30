@@ -1,6 +1,6 @@
 {
   "name": "jodit-angular",
-  "version": "1.0.118",
+  "version": "1.11.1",
   "description": "Angular Jodit Component",
   "main": "index.js",
   "scripts": {
@@ -10,10 +10,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "package": "ng build jodit-angular-lib",
+    "package": "ng build jodit-angular-lib --prod",
     "public": "npm publish dist/jodit-angular-lib",
     "newversion": "rm -rf dist/ && cd ./projects/jodit-angular-lib && npm version patch --no-git-tag-version && cd ../../ && npm version patch --no-git-tag-version && npm run package && npm run github && npm run public",
-    "github": "git add --all  && git commit -m \"New version $npm_package_version. Read more https://github.com/xdan/jodit/releases/tag/$npm_package_version \" && git tag $npm_package_version && git push --tags origin HEAD:master"
+    "github": "git add --all  && git commit -m \"$npm_package_version\" && git tag $npm_package_version && git push --tags origin HEAD:v11"
   },
   "repository": {
     "type": "git",
@@ -52,10 +52,10 @@
     "@angular/platform-browser-dynamic": "^11.1.0",
     "@angular/router": "^11.1.0",
     "core-js": "^2.6.5",
-    "jodit": "^3.2.38",
+    "jodit": "^3.5.4",
     "rxjs": "^6.6.3",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.11.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1101.1",

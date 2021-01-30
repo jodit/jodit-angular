@@ -1908,6 +1908,11 @@ atob@^2.1.1, atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+autobind-decorator@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/autobind-decorator/-/autobind-decorator-2.4.0.tgz#ea9e1c98708cf3b5b356f7cf9f10f265ff18239c"
+  integrity sha512-OGYhWUO72V6DafbF8PM8rm3EPbfuyMZcJhtm5/n26IDwO18pohE4eNazLoCGhPiXOCD0gEGmrbU3849QvM8bbw==
+
 autoprefixer@10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.2.1.tgz#ce96870df6ddd9ba4c9bbba56c54b9ef4b00a962"
@@ -5388,10 +5393,12 @@ jest-worker@26.6.2, jest-worker@^26.5.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jodit@^3.2.38:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/jodit/-/jodit-3.3.1.tgz#e6b963ccbf524e35398c8a19029790ec1f53675f"
-  integrity sha512-LYPOJdk8vBP9Y0ynsKY0VQY2CG5Dl6GeYa1DYy7iaUCILgm2MYbdiUv78v+y7jKME0Jc3IIat8wo4o/tMLDcEQ==
+jodit@^3.5.4:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/jodit/-/jodit-3.5.4.tgz#db9b544d9d33b670a59485c1d750f8af1817e540"
+  integrity sha512-egdugBIaeSCGEIQD+98OCtOuXbnPdL+fLCvicM6LWOLktkPIqYtBOtJLBDLTmR7ZTbTJ79EJERxigeLwoofU3A==
+  dependencies:
+    autobind-decorator "^2.4.0"
 
 js-tokens@^4.0.0:
   version "4.0.0"
@@ -9941,7 +9948,14 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zone.js@~0.10.2, zone.js@~0.10.3:
+zone.js@~0.10.3:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.10.3.tgz#3e5e4da03c607c9dcd92e37dd35687a14a140c16"
   integrity sha512-LXVLVEq0NNOqK/fLJo3d0kfzd4sxwn2/h67/02pjCjfKDxgx1i9QqpvtHD8CrBnSSwMw5+dy11O7FRX5mkO7Cg==
+
+zone.js@~0.11.3:
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.11.3.tgz#255a6313174731cc014d63233ef04fd9858da375"
+  integrity sha512-Y4hTHoh4VcxU5BDGAqEoOnOiyT254w6CiHtpQxAJUSMZPyVgdbKf+5R7Mwz6xsPhMIeBXk5rTopRZDpjssTCUg==
+  dependencies:
+    tslib "^2.0.0"
