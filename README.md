@@ -96,8 +96,13 @@ You can also bind editor events via a shorthand prop on the editor, for example:
 
 Where the handler gets called with an object containing the properties event, which is the event object, and editor, which is a reference to the editor.
 
+## Versions
 
-\
+* Angular <= 8 use v1.0.*
+* Angular 9 use v1.9.*
+* Angular 10 use v1.10.*
+* Angular 11 use v1.11.*
+
 License
 -----
 This package is available under `MIT` License.

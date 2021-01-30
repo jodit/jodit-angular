@@ -7,7 +7,9 @@ import { JoditAngularComponent } from './jodit-angular.component';
   imports: [
     CommonModule
   ],
-  declarations: [JoditAngularComponent],
+  declarations: [
+    JoditAngularComponent
+  ],
   exports: [
       JoditAngularComponent
   ]
