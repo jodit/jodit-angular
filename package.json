@@ -1,6 +1,6 @@
 {
   "name": "jodit-angular",
-  "version": "1.0.121",
+  "version": "1.0.122",
   "description": "Angular Jodit Component",
   "main": "index.js",
   "scripts": {
@@ -52,7 +52,7 @@
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
     "core-js": "^2.6.5",
-    "jodit": "^3.5.4",
+    "jodit": "^3.6.1",
     "rxjs": "^6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
