@@ -1,6 +1,6 @@
 {
   "name": "jodit-angular",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "peerDependencies": {
     "@angular/common": "^9.0.0-0",
     "@angular/core": "^9.0.0-0",
