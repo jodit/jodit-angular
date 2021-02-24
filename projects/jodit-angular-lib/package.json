@@ -1,7 +1,7 @@
 {
   "name": "jodit-angular",
   "license": "MIT",
-  "version": "1.10.2",
+  "version": "1.10.3",
   "dependencies": {
     "tslib": "^2.0.0"
   },
@@ -15,7 +15,7 @@
     "@angular/platform-browser-dynamic": "^10.0.0-0",
     "@angular/router": "^10.0.0-0",
     "core-js": "^2.6.5",
-    "jodit": "^3.5.4",
+    "jodit": "^3.6.1",
     "rxjs": "^6.6.3",
     "zone.js": "~0.10.3"
   }
