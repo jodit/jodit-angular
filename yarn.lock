@@ -5367,10 +5367,10 @@ jest-worker@^26.3.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jodit@^3.5.4:
-  version "3.5.4"
-  resolved "https://registry.yarnpkg.com/jodit/-/jodit-3.5.4.tgz#db9b544d9d33b670a59485c1d750f8af1817e540"
-  integrity sha512-egdugBIaeSCGEIQD+98OCtOuXbnPdL+fLCvicM6LWOLktkPIqYtBOtJLBDLTmR7ZTbTJ79EJERxigeLwoofU3A==
+jodit@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/jodit/-/jodit-3.6.1.tgz#dfa4e7317929b57119fea0c6e6647354e73a0fa9"
+  integrity sha512-aUxr5Nhi8XV88rjD35s8QF591ni6OoQ+4RY/jEg5AuxUWyyxvY0oQqI9IVea33x/bb5M8d/aU/w4qS+BcOopIA==
   dependencies:
     autobind-decorator "^2.4.0"
 
