@@ -5365,10 +5365,10 @@ jest-worker@^26.0.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jodit@^3.2.38:
-  version "3.5.4"
-  resolved "https://registry.yarnpkg.com/jodit/-/jodit-3.5.4.tgz#db9b544d9d33b670a59485c1d750f8af1817e540"
-  integrity sha512-egdugBIaeSCGEIQD+98OCtOuXbnPdL+fLCvicM6LWOLktkPIqYtBOtJLBDLTmR7ZTbTJ79EJERxigeLwoofU3A==
+jodit@^3.5.4:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/jodit/-/jodit-3.7.2.tgz#c1d0c9b715bb7b847c219fb1ada3de77ec977dfe"
+  integrity sha512-Jn/3z3XvCgcnkZBrckaIQ/B4CLlQkrLraU94eqlP2H0zYAMJpPpyRQjutgXWLASKfquuLCykVkvIzFfz10mMEA==
   dependencies:
     autobind-decorator "^2.4.0"
 
@@ -7054,9 +7054,9 @@ path-key@^2.0.0, path-key@^2.0.1:
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
 path-parse@^1.0.5, path-parse@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
-  integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
+  integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
 path-to-regexp@0.1.7:
   version "0.1.7"
