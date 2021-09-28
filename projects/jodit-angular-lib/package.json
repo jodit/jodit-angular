@@ -1,7 +1,7 @@
 {
   "name": "jodit-angular",
   "license": "MIT",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "dependencies": {
     "tslib": "^2.3.1"
   },
