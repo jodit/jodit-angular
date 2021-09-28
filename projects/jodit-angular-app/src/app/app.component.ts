@@ -1,22 +1,22 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title = 'app';
+  title = 'app';
 
-    config = {
-        readonly: true,
-        toolbarAdaptive: false,
-        buttons: [
-            'source'
-        ]
-    };
+  sampletext = 'Sample Text';
 
-    handleEvent($event: any) {
-        return false;
-    }
+  config = {
+    readonly: false,
+    toolbarAdaptive: true
+  };
+
+  handleEvent($event: any) {
+    console.log('onBeforeEnter', $event);
+    return false;
+  }
 }

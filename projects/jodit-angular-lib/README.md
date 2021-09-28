@@ -102,6 +102,7 @@ Where the handler gets called with an object containing the properties event, wh
 * Angular 9 use v1.9.*
 * Angular 10 use v1.10.*
 * Angular 11 use v1.11.*
+* Angular 12 use v1.12.*
 
 License
 -----

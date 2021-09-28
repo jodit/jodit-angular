@@ -6,6 +6,7 @@ export interface EventObj {
 }
 
 @Directive()
+// tslint:disable-next-line:directive-class-suffix
 export class Events {
   // tslint:disable:no-output-on-prefix
   @Output() onChange: EventEmitter<EventObj> = new EventEmitter();
