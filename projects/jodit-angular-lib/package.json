@@ -1,22 +1,22 @@
 {
   "name": "jodit-angular",
   "license": "MIT",
-  "version": "1.12.3",
+  "version": "1.12.4",
   "dependencies": {
     "tslib": "^2.3.1"
   },
   "peerDependencies": {
-    "@angular/common": "^12.2.11",
-    "@angular/core": "^12.2.11",
-    "@angular/animations": "^12.2.11",
-    "@angular/compiler": "^12.2.11",
-    "@angular/forms": "^12.2.11",
-    "@angular/platform-browser": "^12.2.11",
-    "@angular/platform-browser-dynamic": "^12.2.11",
-    "@angular/router": "^12.2.11",
+    "@angular/common": "^12.2.13",
+    "@angular/core": "^12.2.13",
+    "@angular/animations": "^12.2.13",
+    "@angular/compiler": "^12.2.13",
+    "@angular/forms": "^12.2.13",
+    "@angular/platform-browser": "^12.2.13",
+    "@angular/platform-browser-dynamic": "^12.2.13",
+    "@angular/router": "^12.2.13",
     "core-js": "^3.18.3",
-    "jodit": "^3.8.7",
-    "rxjs": "^7.4.0",
+    "jodit": "^3.10.2",
+    "rxjs": "^6.6.7",
     "zone.js": "~0.11.4"
   }
 }
