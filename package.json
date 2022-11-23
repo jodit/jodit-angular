@@ -1,6 +1,6 @@
 {
   "name": "jodit-angular",
-  "version": "1.13.5",
+  "version": "1.14.0",
   "description": "Angular Jodit Component",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "package": "ng build jodit-angular-lib --configuration production",
     "public": "npm publish dist/jodit-angular-lib",
     "newversion": "rm -rf dist/ && cd ./projects/jodit-angular-lib && npm version patch --no-git-tag-version && cd ../../ && npm version patch --no-git-tag-version && npm run package && npm run github && npm run public",
-    "github": "git add --all && git commit -m \"$npm_package_version\" && git tag $npm_package_version && git push --tags origin HEAD:v13"
+    "github": "git add --all && git commit -m \"$npm_package_version\" && git tag $npm_package_version && git push --tags origin HEAD:v14"
   },
   "repository": {
     "type": "git",
