@@ -140,6 +140,5 @@
         }
       }
     }
-  },
-  "defaultProject": "jodit-angular-app"
+  }
 }
