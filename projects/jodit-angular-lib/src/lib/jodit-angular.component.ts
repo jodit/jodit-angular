@@ -12,10 +12,10 @@ import {
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Events, validEvents} from './Events';
+import {Jodit} from 'jodit';
 
-
-declare const require: any;
-const EditorModule: any = require('jodit');
+// declare const require: any;
+// const EditorModule: any = require('jodit');
 
 
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
@@ -105,7 +105,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
     createEditor() {
         // Create instance outside Angular scope
         this.ngZone.runOutsideAngular(() => {
-            this.editor = new EditorModule.Jodit(this.element, this.config);
+            this.editor = new Jodit(this.element, this.config);
         });
 
         if (this.defaultValue) {
