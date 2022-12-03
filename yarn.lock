@@ -2878,6 +2878,11 @@ core-js@^2.6.5:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
   integrity sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
 
+core-js@^3.26.0:
+  version "3.26.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.26.1.tgz#7a9816dabd9ee846c1c0fe0e8fcad68f3709134e"
+  integrity sha512-21491RRQVzUn0GGM9Z1Jrpr6PNPxPi+Za8OM9q4tksTSnlbXXGKK1nXNg/QvwFYettXvSX6zWKCtHHfjN4puyA==
+
 core-js@~2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.3.0.tgz#fab83fbb0b2d8dc85fa636c4b9d34c75420c6d65"
@@ -3092,9 +3097,9 @@ decamelize@^1.2.0:
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
 decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
-  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
+  integrity sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==
 
 decompress-response@^3.3.0:
   version "3.3.0"
@@ -5365,12 +5370,13 @@ jest-worker@^26.0.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jodit@^3.2.38:
-  version "3.5.4"
-  resolved "https://registry.yarnpkg.com/jodit/-/jodit-3.5.4.tgz#db9b544d9d33b670a59485c1d750f8af1817e540"
-  integrity sha512-egdugBIaeSCGEIQD+98OCtOuXbnPdL+fLCvicM6LWOLktkPIqYtBOtJLBDLTmR7ZTbTJ79EJERxigeLwoofU3A==
+jodit@^3.5.4:
+  version "3.23.3"
+  resolved "https://registry.yarnpkg.com/jodit/-/jodit-3.23.3.tgz#36666707b41b12f6d5e448ceb0cbb6f5b7a35f33"
+  integrity sha512-lzKh4spzJy5pxRV8a/sy1ZWIvtoDHYrWkRq7b+aXNHH+5YXM/zwmtIaZOOY+n7LEsl4mrVlLXpd1iAT766rR0w==
   dependencies:
     autobind-decorator "^2.4.0"
+    core-js "^3.26.0"
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
