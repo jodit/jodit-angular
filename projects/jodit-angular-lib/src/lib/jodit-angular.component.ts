@@ -158,6 +158,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
     }
 
     setDisabledState(isDisabled: boolean): void {
+        if (this.editor) return;
         this.editor.setReadOnly(isDisabled);
     }
 }
