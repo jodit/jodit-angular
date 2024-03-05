@@ -5,17 +5,16 @@
     "tslib": "^2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^16.2.12",
-    "@angular/core": "^16.2.12",
-    "@angular/animations": "^16.2.12",
-    "@angular/compiler": "^16.2.12",
-    "@angular/forms": "^16.2.12",
-    "@angular/platform-browser": "^16.2.12",
-    "@angular/platform-browser-dynamic": "^16.2.12",
-    "@angular/router": "^16.2.12",
-    "core-js": "^3.35.0",
+    "@angular/common": "^17.2.2",
+    "@angular/core": "^17.2.2",
+    "@angular/animations": "^17.2.2",
+    "@angular/compiler": "^17.2.2",
+    "@angular/forms": "^17.2.2",
+    "@angular/platform-browser": "^17.2.2",
+    "@angular/platform-browser-dynamic": "^17.2.2",
+    "core-js": "^3.36.0",
     "jodit": "^4.0.18",
-    "rxjs": "^6.4.0",
-    "zone.js": "~0.13.3"
+    "rxjs": "^7.8.1",
+    "zone.js": "~0.14.4"
   }
 }
