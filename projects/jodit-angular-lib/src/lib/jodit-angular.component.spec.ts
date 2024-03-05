@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { JoditAngularComponent } from './jodit-angular.component';
 
@@ -6,7 +6,7 @@ describe('JoditAngularComponent', () => {
   let component: JoditAngularComponent;
   let fixture: ComponentFixture<JoditAngularComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ JoditAngularComponent ]
     })
