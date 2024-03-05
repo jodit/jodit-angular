@@ -58,7 +58,6 @@
             "main": "projects/jodit-angular-app/src/main.ts",
             "polyfills": "projects/jodit-angular-app/src/polyfills.ts",
             "tsConfig": "projects/jodit-angular-app/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/jodit-angular-app/src/favicon.ico",
               "projects/jodit-angular-app/src/assets"
@@ -66,7 +65,13 @@
             "styles": [
               "projects/jodit-angular-app/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -96,7 +101,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
