@@ -12,10 +12,8 @@ import {
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Events, validEvents} from './Events';
-
-
-declare const require: any;
-const EditorModule: any = require('jodit');
+import {Jodit} from 'jodit';
+import {Config} from 'jodit/esm/config';
 
 
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
@@ -26,16 +24,15 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
 
 @Component({
     selector: 'jodit-editor',
-    template: `
-        <ng-template></ng-template>`,
+    template: `<ng-template></ng-template>`,
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['../../../../node_modules/jodit/build/jodit.min.css'],
+    styleUrls: ['../../../../node_modules/jodit/es2021/jodit.min.css'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class JoditAngularComponent extends Events implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
     @Input()
-    set config(v: object | undefined) {
+    set config(v: Config) {
         this._config = v;
         if (this.element) {
             this.resetEditor();
@@ -46,14 +43,14 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
         return this._config;
     }
 
-    private _config = {};
+    private _config: Config = {} as Config;
 
     @Input() tagName = 'textarea';
     @Input() id: string | undefined;
     @Input() defaultValue: string | undefined;
 
     element: HTMLElement;
-    editor: any;
+    editor: Jodit;
 
     private onChangeCallback: (_: any) => {};
     private onTouchedCallback: () => {};
@@ -105,7 +102,7 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
     createEditor() {
         // Create instance outside Angular scope
         this.ngZone.runOutsideAngular(() => {
-            this.editor = new EditorModule.Jodit(this.element, this.config);
+            this.editor = Jodit.make(this.element, this.config);
         });
 
         if (this.defaultValue) {
@@ -139,10 +136,8 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
         });
     }
 
-    ngOnDestroy() {
-        if (this.editor) {
-            this.editor.destruct();
-        }
+    ngOnDestroy(): void {
+        this.editor?.destruct();
     }
 
     writeValue(v: any): void {
@@ -158,6 +153,6 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
     }
 
     setDisabledState(isDisabled: boolean): void {
-        this.editor.setReadOnly(isDisabled);
+        this.editor?.setReadOnly(isDisabled);
     }
 }

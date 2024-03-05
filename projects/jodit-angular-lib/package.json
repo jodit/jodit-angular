@@ -1,21 +1,21 @@
 {
   "name": "jodit-angular",
-  "version": "1.0.120",
+  "version": "1.1.0",
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
-    "@angular/core": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
-    "@angular/animations": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
-    "@angular/compiler": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
-    "@angular/forms": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
-    "@angular/platform-browser": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
-    "@angular/platform-browser-dynamic": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
-    "@angular/router": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
-    "core-js": "^2.6.5",
-    "jodit": "^3.5.4",
-    "rxjs": "^6.3.3",
-    "zone.js": "~0.9.1"
+    "@angular/common": "^16.2.12",
+    "@angular/core": "^16.2.12",
+    "@angular/animations": "^16.2.12",
+    "@angular/compiler": "^16.2.12",
+    "@angular/forms": "^16.2.12",
+    "@angular/platform-browser": "^16.2.12",
+    "@angular/platform-browser-dynamic": "^16.2.12",
+    "@angular/router": "^16.2.12",
+    "core-js": "^3.35.0",
+    "jodit": "^4.0.18",
+    "rxjs": "^6.4.0",
+    "zone.js": "~0.13.3"
   }
 }
