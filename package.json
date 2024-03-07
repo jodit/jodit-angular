@@ -2,13 +2,12 @@
   "name": "jodit-angular",
   "version": "1.1.0",
   "description": "Angular Jodit Component",
-  "main": "index.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration production",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "eslint --ext .ts  projects",
     "e2e": "ng e2e",
     "package": "ng build jodit-angular-lib",
     "public": "npm publish dist/jodit-angular-lib",
@@ -20,12 +19,8 @@
     "url": "git+https://github.com/jodit/jodit-angular.git"
   },
   "keywords": [
-    "angular2",
-    "angular4",
-    "angular5",
-    "ng2",
-    "ng4",
-    "ng5",
+    "angular 17",
+    "ng17",
     "jodit",
     "html",
     "text",
@@ -82,7 +77,6 @@
     "karma-jasmine-html-reporter": "^2.1.0",
     "ng-packagr": "^17.2.1",
     "ts-node": "^10.9.2",
-    "tslint": "~6.1.0",
     "typescript": "~5.3.3"
   }
 }

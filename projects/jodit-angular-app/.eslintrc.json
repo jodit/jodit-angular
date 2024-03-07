@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "../../.eslintrc.json"
+  ],
+  "ignorePatterns": [
+    "e2e/**",
+    "src/**/**.spec.ts"
+  ]
+}

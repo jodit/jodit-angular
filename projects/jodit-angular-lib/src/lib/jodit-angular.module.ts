@@ -4,13 +4,9 @@ import { JoditAngularComponent } from './jodit-angular.component';
 
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [JoditAngularComponent],
-  exports: [
-      JoditAngularComponent
-  ]
+  exports: [JoditAngularComponent]
 })
 
 export class JoditAngularModule { }
