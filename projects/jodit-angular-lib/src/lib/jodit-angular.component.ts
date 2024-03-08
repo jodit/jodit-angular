@@ -13,8 +13,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Events, validEvents } from './Events';
 import { Jodit } from 'jodit';
-import { Config } from 'jodit/esm/config';
-import { EventObj } from './jodit.model';
+import { EventObj, EditorConfig } from './jodit.model';
 
 
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
@@ -33,16 +32,16 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
 export class JoditAngularComponent extends Events implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
   @Input()
-  set config(v: Config) {
+  set config(v: EditorConfig) {
     this._config = v;
     this.element && this.resetEditor();
   }
 
-  get config(): Config {
+  get config(): EditorConfig {
     return this._config;
   }
 
-  private _config: Config = {} as Config;
+  private _config: EditorConfig = {} as EditorConfig;
 
   @Input() tagName = 'textarea';
   @Input() id: string | undefined;
@@ -111,10 +110,10 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
           this.ngZone.run(() => this.onTouchedCallback());
         }
       });
-      this.validateEvent();
+      this.editorEventsAction();
   }
 
-  validateEvent(): void {
+  editorEventsAction(): void {
     validEvents.forEach((eventName) => {
       const eventEmitter: EventEmitter<EventObj> = this[eventName];
       if (eventEmitter.observers.length > 0) {

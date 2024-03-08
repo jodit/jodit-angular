@@ -24,9 +24,15 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/jodit-angular-lib/src/test.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "projects/jodit-angular-lib/tsconfig.spec.json",
-            "karmaConfig": "projects/jodit-angular-lib/karma.conf.js"
+            "inlineStyleLanguage": "css",
+            "assets": [],
+            "styles": [],
+            "scripts": []
           }
         }
       }
@@ -109,33 +115,22 @@
             "buildTarget": "jodit-angular-app:build"
           }
         },
+
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/jodit-angular-app/src/test.ts",
-            "polyfills": "projects/jodit-angular-app/src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "projects/jodit-angular-app/tsconfig.spec.json",
-            "karmaConfig": "projects/jodit-angular-app/karma.conf.js",
+            "inlineStyleLanguage": "css",
             "assets": [
               "projects/jodit-angular-app/src/favicon.ico",
               "projects/jodit-angular-app/src/assets"
             ],
-            "styles": [
-              "projects/jodit-angular-app/src/styles.css"
-            ],
+            "styles": ["projects/jodit-angular-app/src/styles.css"],
             "scripts": []
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/jodit-angular-app/e2e/protractor.conf.js",
-            "devServerTarget": "jodit-angular-app:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "jodit-angular-app:serve:production"
-            }
           }
         }
       },

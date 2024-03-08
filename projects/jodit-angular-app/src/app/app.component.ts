@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EventObj } from 'jodit-angular';
+import { EventObj, EditorConfig } from 'jodit-angular';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +7,9 @@ import { EventObj } from 'jodit-angular';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-
-  content = '<h1>Hello world</h1>';
-
-  config = {
+  title: string = 'app';
+  content: string = '<h1>Hello world</h1>';
+  config: EditorConfig = {
     /*
      * Readonly: false,
      * toolbarAdaptive: false,l
@@ -21,8 +19,7 @@ export class AppComponent {
      *     'source'
      * ]
      */
-  };
-
+  } as EditorConfig;
   eventObj: EventObj;
 
   handleEvent(event: EventObj): void {

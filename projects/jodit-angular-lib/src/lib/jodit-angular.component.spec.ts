@@ -1,25 +1,19 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { JoditAngularComponent } from './jodit-angular.component';
 
 describe('JoditAngularComponent', () => {
     let component: JoditAngularComponent,
         fixture: ComponentFixture<JoditAngularComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [ JoditAngularComponent ]
-        })
-            .compileComponents();
-    }));
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(JoditAngularComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+          declarations: [JoditAngularComponent],
+        }).compileComponents();
     });
 
-    it('should create', () => {
+    it('should create the lib component', () => {
+        fixture = TestBed.createComponent(JoditAngularComponent);
+        component= fixture.componentInstance;
         expect(component).toBeTruthy();
     });
 });
