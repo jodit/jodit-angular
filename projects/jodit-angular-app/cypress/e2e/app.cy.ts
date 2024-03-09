@@ -1,11 +1,11 @@
 import { AppPage } from './app.po';
 
-describe('template spec', () => {
+describe('jodit-angular App', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
-  })
+  });
 
   it('should display Jodit html editor', () => {
   
