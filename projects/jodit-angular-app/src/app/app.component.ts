@@ -7,8 +7,8 @@ import { EventObj, EditorConfig } from 'jodit-angular';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'app';
-  content: string = '<h1>Hello world</h1>';
+  title = 'app';
+  content = '<h1>Hello world</h1>';
   config: EditorConfig = {
     /*
      * Readonly: false,

@@ -6,5 +6,4 @@ export interface EventObj {
   editor: Jodit;
 }
 
-export interface EditorConfig extends Config {
-}
+export type EditorConfig = Config;
