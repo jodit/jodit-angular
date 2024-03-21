@@ -11,7 +11,7 @@
     "lint": "eslint --ext .ts  projects",
     "e2e:open": "concurrently \"ng serve\" \"cd projects/jodit-angular-app && npx cypress open --e2e --browser electron\"",
     "e2e:run": "concurrently \"ng serve\" \"cd projects/jodit-angular-app && cypress run\"",
-    "package": "ng build jodit-angular-lib",
+    "package": "ng build jodit-angular-lib --configuration production",
     "public": "npm publish dist/jodit-angular-lib",
     "newversion": "rm -rf dist/ && cd ./projects/jodit-angular-lib && npm version patch --no-git-tag-version && cd ../../ && npm version patch --no-git-tag-version && npm run package && npm run github && npm run public",
     "github": "git add --all  && git commit -m \"New version $npm_package_version. Read more https://github.com/xdan/jodit/releases/tag/$npm_package_version \" && git tag $npm_package_version && git push --tags origin HEAD:master"
