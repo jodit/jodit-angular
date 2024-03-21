@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
+import { EventObj, EditorConfig } from 'jodit-angular';
 
 @Component({
   selector: 'app-root',
@@ -7,20 +8,21 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-
   content = '<h1>Hello world</h1>';
+  config: EditorConfig = {
+    /*
+     * Readonly: false,
+     * toolbarAdaptive: false,l
+     * useAceEditor: false,
+     * sourceEditor: 'area'
+     * buttons: [
+     *     'source'
+     * ]
+     */
+  } as EditorConfig;
+  eventObj: EventObj;
 
-  config = {
-    // readonly: false,
-    // toolbarAdaptive: false,
-    // useAceEditor: false,
-    // sourceEditor: 'area'
-    // buttons: [
-    //     'source'
-    // ]
-  };
-
-  handleEvent($event: any) {
-    return false;
+  handleEvent(event: EventObj): void {
+    this.eventObj = event;
   }
 }

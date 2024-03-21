@@ -8,10 +8,13 @@ describe('jodit-angular App', () => {
   });
 
   it('should display Jodit html editor', () => {
+  
     page.navigateTo();
 
     // Must be exists Jodit container & workplace class styles
-    expect(page.getJoditContainer()).toBeTruthy();
-    expect(page.getJoditWorkplace()).toBeTruthy();
+    page.getJoditContainer().should('be.visible');
+    page.getJoditWorkplace().should('be.visible').and('contain', 'Hello world');
+
   });
-});
+
+})

@@ -1,12 +1,9 @@
-import {Output, EventEmitter} from '@angular/core';
+import { Directive, EventEmitter, Output } from '@angular/core';
+import { EventObj } from './jodit.model';
 
-export interface EventObj {
-  args: any[];
-  editor: any;
-}
 
+@Directive()
 export class Events {
-  // tslint:disable:no-output-on-prefix
   @Output() onChange: EventEmitter<EventObj> = new EventEmitter();
   @Output() onBeforeEnter: EventEmitter<EventObj> = new EventEmitter(false);
   @Output() onKeydown: EventEmitter<EventObj> = new EventEmitter(false);

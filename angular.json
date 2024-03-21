@@ -10,30 +10,29 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/jodit-angular-lib/tsconfig.lib.json",
             "project": "projects/jodit-angular-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/jodit-angular-lib/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/jodit-angular-lib/src/test.ts",
-            "tsConfig": "projects/jodit-angular-lib/tsconfig.spec.json",
-            "karmaConfig": "projects/jodit-angular-lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/jodit-angular-lib/tsconfig.lib.json",
-              "projects/jodit-angular-lib/tsconfig.spec.json"
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": "projects/jodit-angular-lib/tsconfig.spec.json",
+            "inlineStyleLanguage": "css",
+            "assets": [],
+            "styles": [],
+            "scripts": []
           }
         }
       }
@@ -53,7 +52,6 @@
             "main": "projects/jodit-angular-app/src/main.ts",
             "polyfills": "projects/jodit-angular-app/src/polyfills.ts",
             "tsConfig": "projects/jodit-angular-app/tsconfig.app.json",
-            "aot": false,
             "assets": [
               "projects/jodit-angular-app/src/favicon.ico",
               "projects/jodit-angular-app/src/assets"
@@ -61,7 +59,13 @@
             "styles": [
               "projects/jodit-angular-app/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -74,9 +78,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -93,69 +95,48 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "jodit-angular-app:build"
+            "buildTarget": "jodit-angular-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "jodit-angular-app:build:production"
+              "buildTarget": "jodit-angular-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "jodit-angular-app:build"
+            "buildTarget": "jodit-angular-app:build"
           }
         },
+
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/jodit-angular-app/src/test.ts",
-            "polyfills": "projects/jodit-angular-app/src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "projects/jodit-angular-app/tsconfig.spec.json",
-            "karmaConfig": "projects/jodit-angular-app/karma.conf.js",
+            "inlineStyleLanguage": "css",
             "assets": [
               "projects/jodit-angular-app/src/favicon.ico",
               "projects/jodit-angular-app/src/assets"
             ],
-            "styles": [
-              "projects/jodit-angular-app/src/styles.css"
-            ],
+            "styles": ["projects/jodit-angular-app/src/styles.css"],
             "scripts": []
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/jodit-angular-app/tsconfig.app.json",
-              "projects/jodit-angular-app/tsconfig.spec.json",
-              "projects/jodit-angular-app/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/jodit-angular-app/e2e/protractor.conf.js",
-            "devServerTarget": "jodit-angular-app:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "jodit-angular-app:serve:production"
-            }
-          }
         }
+      },
+      "cli": {
+        "schematicCollections": ["@angular-eslint/schematics"]
       }
     }
-  },
-  "defaultProject": "jodit-angular-app"
+  }
 }
