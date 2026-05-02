@@ -4,19 +4,18 @@ import {
     ElementRef,
     EventEmitter,
     forwardRef,
+    inject,
     Input,
     NgZone,
     OnDestroy,
     Provider,
     ViewEncapsulation
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Events, validEvents} from './Events';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Events, EventObj, validEvents } from './Events';
+import { Jodit } from 'jodit';
 
-
-declare const require: any;
-const EditorModule: any = require('jodit');
-
+type JoditConfig = NonNullable<Parameters<typeof Jodit.make>[1]>;
 
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
     provide: NG_VALUE_ACCESSOR,
@@ -26,60 +25,41 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
 
 @Component({
     selector: 'jodit-editor',
-    template: `
-        <ng-template></ng-template>`,
+    standalone: true,
+    template: `<ng-template></ng-template>`,
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['../../../../node_modules/jodit/build/jodit.min.css'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class JoditAngularComponent extends Events implements AfterViewInit, OnDestroy, ControlValueAccessor {
+    private readonly elementRef = inject(ElementRef);
+    private readonly ngZone = inject(NgZone);
 
     @Input()
-    set config(v: object | undefined) {
+    set config(v: JoditConfig | undefined) {
         this._config = v;
         if (this.element) {
             this.resetEditor();
         }
     }
 
-    get config() {
+    get config(): JoditConfig | undefined {
         return this._config;
     }
 
-    private _config = {};
+    private _config: JoditConfig | undefined = {};
 
-    @Input() tagName = 'textarea';
+    @Input() tagName: keyof HTMLElementTagNameMap = 'textarea';
     @Input() id: string | undefined;
     @Input() defaultValue: string | undefined;
 
-    element: HTMLElement;
-    editor: any;
+    private element!: HTMLElement;
+    private editor?: Jodit;
 
-    private onChangeCallback: (_: any) => {};
-    private onTouchedCallback: () => {};
-
-    constructor(private elementRef: ElementRef, private ngZone: NgZone) {
-        super();
-        this.elementRef = elementRef;
-        this.ngZone = ngZone;
-    }
-
-    createElement() {
-        const tagName = typeof this.tagName === 'string' ? this.tagName : 'textarea';
-        this.element = document.createElement(tagName);
-        if (this.element) {
-            this.element.id = this.id;
-            this.elementRef.nativeElement.appendChild(this.element);
-        }
-    }
-
+    private onChangeCallback?: (value: string) => void;
+    private onTouchedCallback?: () => void;
 
     get value(): string {
-        if (this.editor) {
-            return this.editor.getEditorValue();
-        } else {
-            return '';
-        }
+        return this.editor ? this.editor.getEditorValue() : '';
     }
 
     set value(v: string) {
@@ -90,74 +70,74 @@ export class JoditAngularComponent extends Events implements AfterViewInit, OnDe
         }
     }
 
-    resetEditor() {
-        this.editor.destruct();
+    ngAfterViewInit(): void {
+        this.createElement();
         this.createEditor();
     }
 
-    ngAfterViewInit() {
-        if (!this.element) {
-            this.createElement();
-            this.createEditor();
-        }
+    ngOnDestroy(): void {
+        this.editor?.destruct();
     }
 
-    createEditor() {
-        // Create instance outside Angular scope
-        this.ngZone.runOutsideAngular(() => {
-            this.editor = new EditorModule.Jodit(this.element, this.config);
-        });
-
-        if (this.defaultValue) {
-            this.editor.value = this.defaultValue;
-        }
-
-        this.editor.events
-            .on('change', (value: string) => {
-                if (typeof this.onChangeCallback === 'function') {
-                    this.ngZone.run(() => this.onChangeCallback(value));
-                }
-            })
-            .on('blur', () => {
-                if (typeof this.onTouchedCallback === 'function') {
-                    this.ngZone.run(() => this.onTouchedCallback());
-                }
-            });
-
-
-        validEvents.forEach((eventName) => {
-            const eventEmitter: EventEmitter<any> = this[eventName];
-            if (eventEmitter.observers.length > 0) {
-                let eventNameInJodit = eventName.substring(2);
-                eventNameInJodit = eventNameInJodit.substr(0, 1).toLowerCase() + eventNameInJodit.substring(1);
-                // tslint:disable-next-line:max-line-length
-                this.editor.events.on(eventNameInJodit, this.ngZone.run(() => (...args: any[]) => eventEmitter.emit({
-                    args,
-                    editor: this.editor
-                })));
-            }
-        });
+    writeValue(v: string | null): void {
+        this.value = v ?? '';
     }
 
-    ngOnDestroy() {
-        if (this.editor) {
-            this.editor.destruct();
-        }
-    }
-
-    writeValue(v: any): void {
-        this.value = v;
-    }
-
-    registerOnChange(fn: any): void {
+    registerOnChange(fn: (value: string) => void): void {
         this.onChangeCallback = fn;
     }
 
-    registerOnTouched(fn: () => {}): void {
+    registerOnTouched(fn: () => void): void {
         this.onTouchedCallback = fn;
     }
 
     setDisabledState(isDisabled: boolean): void {
-        this.editor.setReadOnly(isDisabled);
+        this.editor?.setReadOnly(isDisabled);
+    }
+
+    private createElement(): void {
+        this.element = document.createElement(this.tagName);
+        if (this.id) {
+            this.element.id = this.id;
+        }
+        this.elementRef.nativeElement.appendChild(this.element);
+    }
+
+    private createEditor(): void {
+        this.ngZone.runOutsideAngular(() => {
+            this.editor = Jodit.make(this.element, this.config);
+        });
+
+        if (this.defaultValue) {
+            this.editor!.value = this.defaultValue;
+        }
+
+        this.editor!.events
+            .on('change', (value: string) => {
+                if (this.onChangeCallback) {
+                    this.ngZone.run(() => this.onChangeCallback!(value));
+                }
+            })
+            .on('blur', () => {
+                if (this.onTouchedCallback) {
+                    this.ngZone.run(() => this.onTouchedCallback!());
+                }
+            });
+
+        validEvents.forEach((eventName) => {
+            const eventEmitter: EventEmitter<EventObj> = this[eventName];
+            if (eventEmitter.observed) {
+                const joditEventName = eventName.charAt(2).toLowerCase() + eventName.substring(3);
+                this.editor!.events.on(
+                    joditEventName,
+                    (...args: unknown[]) => this.ngZone.run(() => eventEmitter.emit({ args, editor: this.editor }))
+                );
+            }
+        });
+    }
+
+    private resetEditor(): void {
+        this.editor?.destruct();
+        this.createEditor();
     }
 }
