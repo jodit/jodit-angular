@@ -2,30 +2,27 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "downlevelIteration": true,
-    "module": "esnext",
-    "noImplicitAny": true,
     "outDir": "./dist/out-tsc",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "moduleResolution": "bundler",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": ["ES2022", "dom", "dom.iterable"],
     "paths": {
-      "jodit-angular": [
-        "dist/jodit-angular-lib"
-      ],
-      "jodit-angular/*": [
-        "dist/jodit-angular-lib/*"
-      ]
+      "jodit-angular": ["dist/jodit-angular-lib"],
+      "jodit-angular/*": ["dist/jodit-angular-lib/*"]
     }
   }
 }

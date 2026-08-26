@@ -1,10 +1,12 @@
-import {Output, EventEmitter} from '@angular/core';
+import { Directive, Output, EventEmitter } from '@angular/core';
+import { Jodit } from 'jodit';
 
 export interface EventObj {
-  args: any[];
-  editor: any;
+    args: unknown[];
+    editor: Jodit | undefined;
 }
 
+@Directive()
 export class Events {
   // tslint:disable:no-output-on-prefix
   @Output() onChange: EventEmitter<EventObj> = new EventEmitter();

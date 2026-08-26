@@ -10,30 +10,22 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/jodit-angular-lib/tsconfig.lib.json",
-            "project": "projects/jodit-angular-lib/ng-package.json"
-          }
+            "project": "projects/jodit-angular-lib/ng-package.json",
+            "tsConfig": "projects/jodit-angular-lib/tsconfig.lib.json"
+          },
+          "configurations": {
+            "production": {},
+            "development": {}
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/jodit-angular-lib/src/test.ts",
             "tsConfig": "projects/jodit-angular-lib/tsconfig.spec.json",
-            "karmaConfig": "projects/jodit-angular-lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/jodit-angular-lib/tsconfig.lib.json",
-              "projects/jodit-angular-lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
@@ -46,116 +38,104 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/jodit-angular-app",
             "index": "projects/jodit-angular-app/src/index.html",
-            "main": "projects/jodit-angular-app/src/main.ts",
-            "polyfills": "projects/jodit-angular-app/src/polyfills.ts",
+            "browser": "projects/jodit-angular-app/src/main.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/jodit-angular-app/tsconfig.app.json",
-            "aot": false,
             "assets": [
-              "projects/jodit-angular-app/src/favicon.ico",
-              "projects/jodit-angular-app/src/assets"
+              {
+                "glob": "favicon.ico",
+                "input": "projects/jodit-angular-app/src",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/jodit-angular-app/src/assets",
+                "output": "/assets"
+              }
             ],
             "styles": [
+              "node_modules/jodit/es2021/jodit.min.css",
               "projects/jodit-angular-app/src/styles.css"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all",
               "fileReplacements": [
                 {
                   "replace": "projects/jodit-angular-app/src/environments/environment.ts",
                   "with": "projects/jodit-angular-app/src/environments/environment.prod.ts"
                 }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "jodit-angular-app:build"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "jodit-angular-app:build:production"
+              "buildTarget": "jodit-angular-app:build:production"
+            },
+            "development": {
+              "buildTarget": "jodit-angular-app:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "jodit-angular-app:build"
-          }
+          "builder": "@angular-devkit/build-angular:extract-i18n"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/jodit-angular-app/src/test.ts",
-            "polyfills": "projects/jodit-angular-app/src/polyfills.ts",
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/jodit-angular-app/tsconfig.spec.json",
-            "karmaConfig": "projects/jodit-angular-app/karma.conf.js",
             "assets": [
-              "projects/jodit-angular-app/src/favicon.ico",
-              "projects/jodit-angular-app/src/assets"
+              {
+                "glob": "favicon.ico",
+                "input": "projects/jodit-angular-app/src",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/jodit-angular-app/src/assets",
+                "output": "/assets"
+              }
             ],
             "styles": [
+              "node_modules/jodit/es2021/jodit.min.css",
               "projects/jodit-angular-app/src/styles.css"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/jodit-angular-app/tsconfig.app.json",
-              "projects/jodit-angular-app/tsconfig.spec.json",
-              "projects/jodit-angular-app/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/jodit-angular-app/e2e/protractor.conf.js",
-            "devServerTarget": "jodit-angular-app:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "jodit-angular-app:serve:production"
-            }
           }
         }
       }
     }
   },
-  "defaultProject": "jodit-angular-app"
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,16 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { JoditAngularComponent } from './jodit-angular.component';
 
-
+// NgModule wrapper kept for backward compatibility.
+// Standalone Angular 14+ apps can also import JoditAngularComponent directly.
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [JoditAngularComponent],
-  exports: [
-      JoditAngularComponent
-  ]
+    imports: [JoditAngularComponent],
+    exports: [JoditAngularComponent]
 })
-
-export class JoditAngularModule { }
+export class JoditAngularModule {}
