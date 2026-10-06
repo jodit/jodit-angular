@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/jodit-angular.svg)](https://www.npmjs.com/package/jodit-angular)
 [![npm](https://img.shields.io/npm/dm/jodit-angular.svg)](https://www.npmjs.com/package/jodit-angular)
 [![npm](https://img.shields.io/npm/l/jodit-angular.svg)](https://www.npmjs.com/package/jodit-angular)
-[![CI](https://github.com/jodit/jodit-angular/actions/workflows/release.yml/badge.svg)](https://github.com/jodit/jodit-angular/actions/workflows/release.yml)
+[![CI](https://github.com/jodit/jodit-angular/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/jodit/jodit-angular/actions/workflows/release.yml)
 
 Angular wrapper for the [Jodit](https://xdsoft.net/jodit/) WYSIWYG editor.
 
