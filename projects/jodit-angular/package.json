@@ -1,0 +1,36 @@
+{
+  "name": "jodit-angular",
+  "version": "2.0.0",
+  "description": "Angular wrapper for the Jodit WYSIWYG editor",
+  "license": "MIT",
+  "author": "Chupurnov Valeriy <chupurnov@gmail.com>",
+  "homepage": "https://github.com/jodit/jodit-angular#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jodit/jodit-angular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jodit/jodit-angular/issues"
+  },
+  "keywords": [
+    "angular",
+    "jodit",
+    "html",
+    "text",
+    "editor",
+    "wysiwyg",
+    "rich editor",
+    "rich text editor",
+    "rte"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^20.0.0 || ^21.0.0 || ^22.0.0",
+    "@angular/core": "^20.0.0 || ^21.0.0 || ^22.0.0",
+    "@angular/forms": "^20.0.0 || ^21.0.0 || ^22.0.0",
+    "jodit": "^4.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

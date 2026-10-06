@@ -1,40 +1,36 @@
 {
-  "name": "jodit-angular",
-  "version": "1.0.119",
-  "description": "Angular Jodit Component",
-  "main": "index.js",
+  "name": "jodit-angular-workspace",
+  "version": "2.0.0",
+  "description": "Angular wrapper for the Jodit WYSIWYG editor",
+  "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
-    "test": "ng test",
+    "start": "ng serve demo",
+    "build": "ng build jodit-angular",
+    "build:demo": "ng build demo",
+    "watch": "ng build jodit-angular --watch --configuration development",
+    "test": "ng test jodit-angular --watch=false --browsers=ChromeHeadless",
+    "test:watch": "ng test jodit-angular",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "package": "ng build jodit-angular-lib",
-    "public": "npm publish dist/jodit-angular-lib",
-    "newversion": "rm -rf dist/ && cd ./projects/jodit-angular-lib && npm version patch --no-git-tag-version && cd ../../ && npm version patch --no-git-tag-version && npm run package && npm run github && npm run public",
-    "github": "git add --all  && git commit -m \"New version $npm_package_version. Read more https://github.com/xdan/jodit/releases/tag/$npm_package_version \" && git tag $npm_package_version && git push --tags origin HEAD:master"
+    "format": "prettier --write \"projects/**/*.{ts,html,css,md}\" \"*.{json,md}\"",
+    "format:check": "prettier --check \"projects/**/*.{ts,html,css,md}\" \"*.{json,md}\"",
+    "version": "node scripts/sync-version.mjs && git add projects/jodit-angular/package.json CHANGELOG.md",
+    "release": "npm version patch && git push --follow-tags origin HEAD"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jodit/jodit-angular.git"
   },
   "keywords": [
-    "angular2",
-    "angular4",
-    "angular5",
-    "ng2",
-    "ng4",
-    "ng5",
+    "angular",
     "jodit",
     "html",
     "text",
     "editor",
-    "wysisyg",
+    "wysiwyg",
     "rich editor",
     "rich text editor",
-    "rte",
-    "javascript"
+    "rte"
   ],
   "author": "Chupurnov Valeriy <chupurnov@gmail.com>",
   "license": "MIT",
@@ -42,43 +38,42 @@
     "url": "https://github.com/jodit/jodit-angular/issues"
   },
   "homepage": "https://github.com/jodit/jodit-angular#readme",
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
   "dependencies": {
-    "@angular/animations": "^8.2.14",
-    "@angular/common": "^8.2.14",
-    "@angular/compiler": "^8.2.14",
-    "@angular/core": "^8.2.14",
-    "@angular/forms": "^8.2.14",
-    "@angular/platform-browser": "^8.2.14",
-    "@angular/platform-browser-dynamic": "^8.2.14",
-    "@angular/router": "^8.2.14",
-    "core-js": "^2.6.5",
-    "jodit": "^3.5.4",
-    "rxjs": "^6.4.0",
-    "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "@angular/common": "^20.3.0",
+    "@angular/compiler": "^20.3.0",
+    "@angular/core": "^20.3.0",
+    "@angular/forms": "^20.3.0",
+    "@angular/platform-browser": "^20.3.0",
+    "jodit": "^4.17.1",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.29",
-    "@angular-devkit/build-ng-packagr": "~0.803.29",
-    "@angular/cli": "8.3.29",
-    "@angular/compiler-cli": "^8.2.14",
-    "@angular/language-service": "^8.2.14",
-    "@types/jasmine": "^2.8.9",
-    "@types/jasminewd2": "^2.0.5",
-    "@types/node": "^10.12.0",
-    "codelyzer": "^5.0.1",
-    "jasmine-core": "~3.3.0",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "^3.1.1",
-    "karma-chrome-launcher": "~2.2.0",
-    "karma-coverage-istanbul-reporter": "^2.0.4",
-    "karma-jasmine": "^1.1.2",
-    "karma-jasmine-html-reporter": "^1.3.1",
-    "ng-packagr": "^5.4.0",
-    "protractor": "~5.4.1",
-    "ts-node": "~7.0.1",
-    "tsickle": "^0.37.0",
-    "tslint": "~5.11.0",
-    "typescript": "~3.5.3"
+    "@angular/build": "^20.3.38",
+    "@angular/cli": "^20.3.38",
+    "@angular/compiler-cli": "^20.3.0",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.9.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "^20.3.0",
+    "prettier": "^3.6.0",
+    "typescript": "~5.9.2"
   }
 }

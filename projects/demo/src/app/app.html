@@ -1,0 +1,25 @@
+<main>
+  <h2>ngModel</h2>
+  <jodit-editor
+    [(ngModel)]="content"
+    [disabled]="disabled()"
+    [config]="config()"
+    (onReady)="onReady($event)"
+    (onChange)="onChange($event)"
+  />
+  <p>
+    <button type="button" (click)="disabled.set(!disabled())">
+      {{ disabled() ? 'Enable' : 'Disable' }}
+    </button>
+    <button type="button" (click)="toggleToolbar()">Toggle toolbar (recreates editor)</button>
+    <button type="button" (click)="content = '<p>Reset from outside</p>'">
+      Set value from outside
+    </button>
+  </p>
+  <p>Last event: {{ lastEvent() }}</p>
+  <pre>{{ content }}</pre>
+
+  <h2>Reactive form</h2>
+  <jodit-editor [formControl]="control" [config]="{ height: 200 }" />
+  <pre>{{ control.value }}</pre>
+</main>
