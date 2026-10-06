@@ -138,7 +138,7 @@ the Actions tab (choose patch, minor or major), or locally:
 
 ```bash
 npm version patch   # bumps both package.json files, updates CHANGELOG, commits and tags
-git push --follow-tags origin master
+git push --follow-tags origin main
 ```
 
 The `release.yml` workflow runs tests, publishes `dist/jodit-angular` to npm through OIDC
