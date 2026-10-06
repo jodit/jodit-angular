@@ -1,0 +1,49 @@
+name: New version
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version bump
+        required: true
+        default: patch
+        type: choice
+        options: [patch, minor, major]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.bump.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Bump version and push tag
+        id: bump
+        run: |
+          npm ci
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          npm version ${{ inputs.bump }} -m "New version %s"
+          TAG=$(node -p "require('./package.json').version")
+          git push --follow-tags origin HEAD
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+  # Pushes made with GITHUB_TOKEN do not trigger `on: push`, so call the release workflow directly.
+  release:
+    needs: bump
+    uses: ./.github/workflows/release.yml
+    with:
+      ref: refs/tags/${{ needs.bump.outputs.tag }}
+    secrets: inherit
