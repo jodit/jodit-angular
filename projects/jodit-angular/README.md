@@ -133,8 +133,8 @@ Library sources live in `projects/jodit-angular`, the demo in `projects/demo`.
 
 ## Release
 
-Releases are built and published by GitHub Actions. Either run the **New version** workflow from
-the Actions tab (choose patch, minor or major), or locally:
+Releases are built and published by GitHub Actions when a version tag is pushed. The `main`
+branch is protected, so the bump is done locally by a maintainer:
 
 ```bash
 npm version patch   # bumps both package.json files, updates CHANGELOG, commits and tags
