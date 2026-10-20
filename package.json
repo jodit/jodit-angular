@@ -51,10 +51,10 @@
     ]
   },
   "dependencies": {
-    "@angular/common": "^20.3.0",
-    "@angular/compiler": "^20.3.0",
-    "@angular/core": "^20.3.0",
-    "@angular/forms": "^20.3.0",
+    "@angular/common": "^20.3.34",
+    "@angular/compiler": "^20.3.34",
+    "@angular/core": "^20.3.34",
+    "@angular/forms": "^20.3.34",
     "@angular/platform-browser": "^20.3.0",
     "jodit": "^4.17.1",
     "rxjs": "~7.8.0",
