@@ -5,6 +5,9 @@ updates:
     schedule:
       interval: weekly
     groups:
+      angular-security:
+        applies-to: security-updates
+        patterns: ['@angular/*', 'ng-packagr', 'typescript', 'zone.js']
       angular:
         patterns: ['@angular/*', 'ng-packagr', 'typescript', 'zone.js']
       dev:
