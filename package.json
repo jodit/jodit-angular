@@ -51,11 +51,11 @@
     ]
   },
   "dependencies": {
-    "@angular/common": "^20.3.0",
-    "@angular/compiler": "^20.3.0",
-    "@angular/core": "^20.3.0",
-    "@angular/forms": "^20.3.0",
-    "@angular/platform-browser": "^20.3.0",
+    "@angular/common": "^20.3.35",
+    "@angular/compiler": "^20.3.35",
+    "@angular/core": "^20.3.35",
+    "@angular/forms": "^20.3.35",
+    "@angular/platform-browser": "^20.3.35",
     "jodit": "^4.18.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -64,7 +64,7 @@
   "devDependencies": {
     "@angular/build": "^20.3.38",
     "@angular/cli": "^20.3.38",
-    "@angular/compiler-cli": "^20.3.0",
+    "@angular/compiler-cli": "^20.3.35",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.13.0",
     "karma": "~6.4.0",
